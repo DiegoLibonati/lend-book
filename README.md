@@ -6,25 +6,6 @@ This project was created primarily for **educational and learning purposes**.
 While it is well-structured and could technically be used in production, it is **not intended for commercialization**.
 The main goal is to explore and demonstrate best practices, patterns, and technologies in software development.
 
-## Getting Started
-
-1. Clone the repository
-2. Go to the repository folder and execute: `python -m venv venv`
-3. Execute in Windows: `venv\Scripts\activate`
-4. Execute in Linux/Mac: `source venv/bin/activate`
-5. Execute: `pip install -r requirements.txt`
-6. Execute: `pip install -r requirements.dev.txt`
-7. Execute: `pip install -r requirements.test.txt`
-8. Install the package in editable mode: `pip install -e .`
-9. Run the project:
-    1. From CLI: `python -m lend_book.manager`
-    2. Or import as a library in Python: `from lend_book import Manager, BookModel`
-
-### Pre-Commit for Development
-
-1. Once you're inside the virtual environment, let's install the hooks specified in the pre-commit. Execute: `pre-commit install`
-2. Now every time you try to commit, the pre-commit lint will run. If you want to do it manually, you can run the command: `pre-commit run --all-files`
-
 ## Description
 
 **Lend Book** is a library management system built in Python using object-oriented programming principles. It provides a clean, structured API to manage an inventory of books and a registry of users, supporting the full lifecycle of book rentals and returns.
@@ -40,13 +21,17 @@ Two types of users are supported, each with different rental policies:
 
 The codebase includes a structured exception hierarchy (`ValidationError`, `NotFoundError`, `ConflictError`, `BusinessError`, `AuthenticationError`, `InternalError`) that makes error handling predictable and explicit. Every error carries a `code` constant and a human-readable `message`, making it straightforward to integrate with any UI or API layer on top.
 
-The package is installed in editable mode via `pyproject.toml` using a `src/` layout, and exposes a clean public API (`Manager`, `Book`, `User`, `UserNormal`, `UserPremium`) from its top-level `__init__.py`. The project follows modern Python conventions: strict typing throughout, Ruff for linting and formatting, pre-commit hooks for code quality enforcement, and a full pytest test suite covering models, business logic, exceptions, constants, and the manager orchestration layer.
+The package is installed in editable mode via `pyproject.toml` using a `src/` layout, and exposes a clean public API (`Manager`, `BookModel`, `UserModel`, `UserNormalModel`, `UserPremiumModel`) from its top-level `__init__.py`. The project follows modern Python conventions: strict typing throughout, Ruff for linting and formatting, pre-commit hooks for code quality enforcement, and a full pytest test suite covering models, business logic, exceptions, constants, and the manager orchestration layer.
 
 ## Technologies used
+
+The project relies on a minimal, modern Python stack:
 
 1. Python >= 3.11
 
 ## Libraries used
+
+Dependencies are split across three requirements files, depending on whether you are running, developing, or testing the project:
 
 #### Requirements.txt
 
@@ -72,30 +57,48 @@ pytest-timeout==2.3.1
 pytest-xdist==3.5.0
 ```
 
-## Portfolio Link
+## Getting Started
 
-[`https://www.diegolibonati.com.ar/#/project/lend-book`](https://www.diegolibonati.com.ar/#/project/lend-book)
+With the dependencies listed above in mind, follow these steps to set up the project locally:
 
-## Testing
-
-1. Go to the repository folder
-2. Execute: `python -m venv venv`
+1. Clone the repository
+2. Go to the repository folder and execute: `python -m venv venv`
 3. Execute in Windows: `venv\Scripts\activate`
 4. Execute in Linux/Mac: `source venv/bin/activate`
 5. Execute: `pip install -r requirements.txt`
-6. Execute: `pip install -r requirements.test.txt`
-7. Install the package in editable mode: `pip install -e .`
-8. Execute: `pytest --log-cli-level=INFO`
+6. Execute: `pip install -r requirements.dev.txt`
+7. Execute: `pip install -r requirements.test.txt`
+8. Install the package in editable mode: `pip install -e .`
+9. Run the project:
+    1. From CLI: `python -m lend_book.manager`
+    2. Or import as a library in Python: `from lend_book import Manager, BookModel`
+
+### Pre-Commit for Development
+
+Once the environment is ready, enable the pre-commit hooks so that linting and formatting run automatically on every commit:
+
+1. Once you're inside the virtual environment, let's install the hooks specified in the pre-commit. Execute: `pre-commit install`
+2. Now every time you try to commit, the pre-commit lint will run. If you want to do it manually, you can run the command: `pre-commit run --all-files`
+
+## Testing
+
+After completing [Getting Started](#getting-started), the full test suite can be run from the repository root:
+
+1. Activate your virtual environment
+2. Execute: `pytest --log-cli-level=INFO`
 
 ## Security Audit
 
-You can check your dependencies for known vulnerabilities using **pip-audit**.
+In addition to running tests, you can check your dependencies for known vulnerabilities using **pip-audit** (already included in `requirements.dev.txt`):
 
 1. Go to the repository folder
 2. Activate your virtual environment
-3. Execute: `pip install -r requirements.dev.txt`
-4. Execute: `pip-audit -r requirements.txt`
+3. Execute: `pip-audit -r requirements.txt`
 
 ## Known Issues
 
 None at the moment.
+
+## Portfolio Link
+
+[`https://www.diegolibonati.com.ar/#/project/lend-book`](https://www.diegolibonati.com.ar/#/project/lend-book)
