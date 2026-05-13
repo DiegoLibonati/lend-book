@@ -37,6 +37,9 @@ test = [
     "pytest-xdist==3.5.0",
 ]
 
+[project.scripts]
+lend-book-demo = "examples.demo:main"
+
 [project.urls]
 Homepage = "https://github.com/DiegoLibonati/Library-Python-POO"
 Repository = "https://github.com/DiegoLibonati/Library-Python-POO"
