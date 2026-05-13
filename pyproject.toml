@@ -6,10 +6,49 @@ build-backend = "setuptools.build_meta"
 name = "lend-book"
 version = "1.0.0"
 description = "Lend Book is a library management system built in Python using object-oriented programming principles."
+readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit==4.3.0",
+    "pip-audit==2.7.3",
+    "ruff==0.11.12",
+]
+test = [
+    "pytest==8.4.2",
+    "pytest-env==1.1.5",
+    "pytest-cov==4.1.0",
+    "pytest-timeout==2.3.1",
+    "pytest-xdist==3.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/DiegoLibonati/Library-Python-POO"
+Repository = "https://github.com/DiegoLibonati/Library-Python-POO"
+Issues = "https://github.com/DiegoLibonati/Library-Python-POO/issues"
+Changelog = "https://github.com/DiegoLibonati/Library-Python-POO/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["lend_book*"]
+
+[tool.setuptools.package-data]
+lend_book = ["py.typed"]
 
 [tool.pytest.ini_options]
 pythonpath = "src"
@@ -35,7 +74,7 @@ line-length = 160
 exclude = [".git", "__pycache__", "env", "venv", "migrations"]
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "N", "UP"]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF", "C4"]
 ignore = ["E203"]
 
 [tool.ruff.format]

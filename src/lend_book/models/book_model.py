@@ -1,9 +1,5 @@
 from uuid import uuid4
 
-from lend_book.configs.logger_config import setup_logger
-
-logger = setup_logger("lend-book - book_model.py")
-
 
 class BookModel:
     def __init__(self, name: str, description: str, author: str, units: int, banner_url: str = "") -> None:
@@ -71,18 +67,3 @@ class BookModel:
             f"Book Units: {self.units}\n"
             f"Book Banner: {self.banner_url}\n\n"
         )
-
-
-def main() -> None:
-    book = BookModel(
-        name="Drácula",
-        description="Es una novela de fantasía gótica escrita por Bram Stoker, publicada en 1897.",
-        author="Bram Stoker",
-        units=20,
-    )
-
-    logger.info(book)
-
-
-if __name__ == "__main__":
-    main()

@@ -249,3 +249,29 @@ class TestManagerStr:
     @pytest.mark.unit
     def test_str_contains_library_name(self, manager: Manager) -> None:
         assert "Libreria LaRosca" in str(manager)
+
+
+class TestManagerStrUsers:
+    @pytest.mark.unit
+    def test_str_users_does_not_raise_when_empty(self, manager: Manager) -> None:
+        manager.str_users()
+
+    @pytest.mark.unit
+    def test_str_users_does_not_raise_with_registered_users(self, manager: Manager, user_normal: UserNormalModel, user_premium: UserPremiumModel) -> None:
+        manager.register_user(user=user_normal)
+        manager.register_user(user=user_premium)
+
+        manager.str_users()
+
+
+class TestManagerStrBooks:
+    @pytest.mark.unit
+    def test_str_books_does_not_raise_when_empty(self, manager: Manager) -> None:
+        manager.str_books()
+
+    @pytest.mark.unit
+    def test_str_books_does_not_raise_with_added_books(self, manager: Manager, book_with_units: BookModel, book_out_of_stock: BookModel) -> None:
+        manager.add_book(book=book_with_units)
+        manager.add_book(book=book_out_of_stock)
+
+        manager.str_books()

@@ -8,13 +8,13 @@ class BaseError(Exception):
 
     def __init__(
         self,
-        code: str = code,
+        code: str | None = None,
         message: str | None = None,
     ):
-        if message is not None:
-            self.message = message
         if code is not None:
             self.code = code
+        if message is not None:
+            self.message = message
         super().__init__(self.message)
 
 

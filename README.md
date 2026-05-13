@@ -31,15 +31,15 @@ The project relies on a minimal, modern Python stack:
 
 ## Libraries used
 
-Dependencies are split across three requirements files, depending on whether you are running, developing, or testing the project:
+Dependencies are declared in `pyproject.toml` and split into optional groups so production installs stay minimal.
 
-#### Requirements.txt
+#### **Runtime ([project.dependencies])**
 
 ```
-No requirements.
+None — the library has no third-party runtime dependencies.
 ```
 
-#### Requirements.dev.txt
+#### **Dev ([project.optional-dependencies] dev)**
 
 ```
 pre-commit==4.3.0
@@ -47,7 +47,7 @@ pip-audit==2.7.3
 ruff==0.11.12
 ```
 
-#### Requirements.test.txt
+#### **Test ([project.optional-dependencies] test)**
 
 ```
 pytest==8.4.2
@@ -65,12 +65,9 @@ With the dependencies listed above in mind, follow these steps to set up the pro
 2. Go to the repository folder and execute: `python -m venv venv`
 3. Execute in Windows: `venv\Scripts\activate`
 4. Execute in Linux/Mac: `source venv/bin/activate`
-5. Execute: `pip install -r requirements.txt`
-6. Execute: `pip install -r requirements.dev.txt`
-7. Execute: `pip install -r requirements.test.txt`
-8. Install the package in editable mode: `pip install -e .`
-9. Run the project:
-    1. From CLI: `python -m lend_book.manager`
+5. Install the package in editable mode with dev and test extras: `pip install -e .[dev,test]`
+6. Run the project:
+    1. From CLI (demo): `python -m examples.demo`
     2. Or import as a library in Python: `from lend_book import Manager, BookModel`
 
 ### Pre-Commit for Development
@@ -89,11 +86,11 @@ After completing [Getting Started](#getting-started), the full test suite can be
 
 ## Security Audit
 
-In addition to running tests, you can check your dependencies for known vulnerabilities using **pip-audit** (already included in `requirements.dev.txt`):
+In addition to running tests, you can check your dependencies for known vulnerabilities using **pip-audit** (already included in the `dev` extra):
 
 1. Go to the repository folder
 2. Activate your virtual environment
-3. Execute: `pip-audit -r requirements.txt`
+3. Execute: `pip-audit`
 
 ## Known Issues
 

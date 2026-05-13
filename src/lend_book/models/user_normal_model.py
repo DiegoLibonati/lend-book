@@ -1,11 +1,8 @@
-from lend_book.configs.logger_config import setup_logger
 from lend_book.constants.codes import CODE_ERROR_BOOK_RETURN_REQUIRED, CODE_ERROR_OUT_OF_STOCK, CODE_NOT_FOUND_RENTED_BOOK
 from lend_book.constants.messages import MESSAGE_ERROR_BOOK_RETURN_REQUIRED, MESSAGE_ERROR_OUT_OF_STOCK, MESSAGE_NOT_FOUND_RENTED_BOOK
 from lend_book.models.book_model import BookModel
 from lend_book.models.user_model import UserModel
 from lend_book.utils.exceptions import BusinessError, NotFoundError
-
-logger = setup_logger("lend-book - user_normal_model.py")
 
 
 class UserNormalModel(UserModel):
@@ -42,40 +39,3 @@ class UserNormalModel(UserModel):
             f"User Adress: {self.address}\n"
             f"Book Rented: {self.rented_book.name if self.rented_book else None}\n\n"
         )
-
-
-def main() -> None:
-    dracula_book = BookModel(
-        name="Drácula",
-        description="Es una novela de fantasía gótica escrita por Bram Stoker, publicada en 1897.",
-        author="Bram Stoker",
-        units=20,
-    )
-    la_clase_de_griego_book = BookModel(
-        name="LA CLASE DE GRIEGO",
-        description="En Seúl, una mujer asiste a clases de griego antiguo.",
-        author="KANG, HAN",
-        units=1,
-    )
-    gravity_falls_book = BookModel(
-        name="Gravity Falls",
-        description="Este libro está lleno de datos y confesiones escalofriantes para satisfacer tu curiosidad.",
-        author="Alex Hirsch",
-        units=5,
-    )
-
-    user_normal = UserNormalModel(name="Pepe", surname="Alcachofaz", address="Calle False 123")
-    user_normal_2 = UserNormalModel(name="Sergio", surname="Sorg", address="Calle False 12345")
-
-    user_normal.rent_book(book=dracula_book)
-
-    logger.info(user_normal)
-    logger.info(user_normal_2)
-
-    logger.info(dracula_book)
-    logger.info(la_clase_de_griego_book)
-    logger.info(gravity_falls_book)
-
-
-if __name__ == "__main__":
-    main()
