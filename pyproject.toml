@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lend-book"
-version = "1.0.0"
+version = "0.1.0"
 description = "Lend Book is a library management system built in Python using object-oriented programming principles."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -45,6 +45,7 @@ Homepage = "https://github.com/DiegoLibonati/Library-Python-POO"
 Repository = "https://github.com/DiegoLibonati/Library-Python-POO"
 Issues = "https://github.com/DiegoLibonati/Library-Python-POO/issues"
 Changelog = "https://github.com/DiegoLibonati/Library-Python-POO/blob/main/CHANGELOG.md"
+
 
 [tool.setuptools.packages.find]
 where = ["src"]
