@@ -8,10 +8,10 @@ from lend_book.utils.exceptions import BusinessError, NotFoundError
 class UserNormalModel(UserModel):
     def __init__(self, name: str, surname: str, address: str) -> None:
         super().__init__(name=name, surname=surname, address=address)
-        self.__rented_book: BookModel = None
+        self.__rented_book: BookModel | None = None
 
     @property
-    def rented_book(self) -> BookModel:
+    def rented_book(self) -> BookModel | None:
         return self.__rented_book
 
     def rent_book(self, book: BookModel) -> None:
@@ -24,14 +24,14 @@ class UserNormalModel(UserModel):
         book.decrease_unit()
         self.__rented_book = book
 
-    def return_book(self) -> None:
+    def return_book(self, book: BookModel | None = None) -> None:
         if not self.rented_book:
             raise NotFoundError(code=CODE_NOT_FOUND_RENTED_BOOK, message=MESSAGE_NOT_FOUND_RENTED_BOOK)
 
         self.rented_book.increase_unit()
         self.__rented_book = None
 
-    def __str__(self) -> None:
+    def __str__(self) -> str:
         return (
             f"----- User Normal Model {self.id} -----\n"
             f"User ID: {self.id}\n"

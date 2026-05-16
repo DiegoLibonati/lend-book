@@ -24,9 +24,10 @@ class UserPremiumModel(UserModel):
         book.decrease_unit()
         self.__rented_books.append(book)
 
-    def return_book(self, book: BookModel) -> None:
-        if book not in self.rented_books:
-            raise NotFoundError(code=CODE_NOT_FOUND_RENTED_BOOK, message=MESSAGE_NOT_FOUND_RENTED_BOOK_BY_NAME.format(name=book.name))
+    def return_book(self, book: BookModel | None = None) -> None:
+        if book is None or book not in self.rented_books:
+            name = book.name if book is not None else ""
+            raise NotFoundError(code=CODE_NOT_FOUND_RENTED_BOOK, message=MESSAGE_NOT_FOUND_RENTED_BOOK_BY_NAME.format(name=name))
 
         book.increase_unit()
         self.__rented_books.remove(book)
@@ -34,7 +35,7 @@ class UserPremiumModel(UserModel):
     def _get_list_name_rented_books(self) -> list[str]:
         return [book.name for book in self.rented_books]
 
-    def __str__(self) -> None:
+    def __str__(self) -> str:
         return (
             f"----- User Premium {self.id} -----\n"
             f"User ID: {self.id}\n"

@@ -34,13 +34,13 @@ class BookModel:
     def banner_url(self) -> str:
         return self.__banner_url
 
-    @property
-    def stock(self) -> bool:
-        return bool(self.units)
-
     @banner_url.setter
     def banner_url(self, value: str) -> None:
         self.__banner_url = value
+
+    @property
+    def stock(self) -> bool:
+        return bool(self.units)
 
     def decrease_unit(self) -> None:
         if not self.stock:

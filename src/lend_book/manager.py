@@ -79,7 +79,7 @@ class Manager:
 
         user.rent_book(book=book)
 
-    def return_book(self, user: UserNormalModel | UserPremiumModel, book: BookModel = None) -> None:
+    def return_book(self, user: UserNormalModel | UserPremiumModel, book: BookModel | None = None) -> None:
         if not user or not isinstance(user, UserNormalModel | UserPremiumModel):
             raise ValidationError(code=CODE_NOT_VALID_USER, message=MESSAGE_NOT_VALID_USER)
         if book and not isinstance(book, BookModel):
